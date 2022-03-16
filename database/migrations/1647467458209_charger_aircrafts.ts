@@ -1,17 +1,15 @@
 import BaseSchema from '@ioc:Adonis/Lucid/Schema'
 
-export default class GimballInstallations extends BaseSchema {
-  protected tableName = 'gimball_installations'
+export default class ChargerAircrafts extends BaseSchema {
+  protected tableName = 'charger_aircrafts'
 
   public async up () {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id')
-      table.boolean('downward')
-      table.boolean('upward')
-      table.boolean('downward_dual')
+
       table.integer('aircraft_id').unsigned().references('aircraft.id')
-      // Deleta Gimbal Installations, quando a areonave for deletada
-      .onDelete('CASCADE')
+      table.integer('charger_id').unsigned().references('chargers.id')
+      table.unique(['charger_id', 'aircraft_id'])
 
       /**
        * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL
