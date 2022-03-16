@@ -1,5 +1,8 @@
 import { DateTime } from 'luxon'
-import { BaseModel, column } from '@ioc:Adonis/Lucid/Orm'
+import { BaseModel, column, HasOne, hasOne, ManyToMany, manyToMany } from '@ioc:Adonis/Lucid/Orm'
+import Gimbal from './Gimbal'
+import Charger from './Charger'
+import GimballInstallation from './GimballInstallation'
 
 export default class Aircraft extends BaseModel {
   @column({ isPrimary: true })
@@ -28,4 +31,17 @@ export default class Aircraft extends BaseModel {
 
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime
+
+  // Uma aeronave pode ter vários modelos de gimbals
+  @manyToMany(()=> Gimbal)
+  public gimbals: ManyToMany<typeof Gimbal>
+
+  // Uma aeronave pode ter vários modelos de baterias
+  @manyToMany(()=> Charger)
+  public charges: ManyToMany<typeof Charger>
+
+  // Uma aeronave contem um tipo instalação (Poderia ser ENUM talvez)
+  @hasOne(()=> GimballInstallation)
+  public gimbal_installation: HasOne<typeof GimballInstallation> 
+
 }
