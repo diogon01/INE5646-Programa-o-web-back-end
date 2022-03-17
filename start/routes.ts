@@ -30,4 +30,10 @@ Route.resource('usuario', 'UsersController')
 Route.resource('aeronave', 'AircraftController')
 .apiOnly();
 
+Route.resource('bateria', 'ChargersController')
+.apiOnly();
+
+Route.resource('gimbal', 'GimbalsController')
+.apiOnly();
+
 Route.post('login', 'UsersController.login')
