@@ -38,7 +38,10 @@ export default class Aircraft extends BaseModel {
   public gimbals: ManyToMany<typeof Gimbal>
 
   // Uma aeronave pode ter vários modelos de baterias
-  @hasOne(()=> Charger)
+  @hasOne(()=> Charger, {
+    localKey: 'charger_id',
+    foreignKey: 'id'
+  })
   public bateria: HasOne<typeof Charger>
 
   // Uma aeronave contem um tipo instalação (Poderia ser ENUM talvez)

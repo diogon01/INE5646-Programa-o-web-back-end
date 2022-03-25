@@ -32,6 +32,7 @@ export default class CreateAircraftValidator {
     max_payload: schema.number(),
     ip_rating: schema.string(),
     max_flight_time: schema.number(),
+    charger_id: schema.number.optional(),
     bateria: schema.object().members({
       id: schema.number(),
       model: schema.string(),
