@@ -12,7 +12,7 @@ export default class Aircraft extends BaseSchema {
       table.decimal('weight')
       table.string('motor_model')
       table.string('ip_rating')
-      table.time('max_flight_time')
+      table.decimal('max_flight_time', 8, 2)
 
       /**
        * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL

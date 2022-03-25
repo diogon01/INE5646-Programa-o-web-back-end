@@ -2,6 +2,11 @@ import { DateTime } from 'luxon'
 import { BaseModel, column } from '@ioc:Adonis/Lucid/Orm'
 
 export default class Charger extends BaseModel {
+  
+  static get table () {
+    return 'charger'
+  }
+  
   @column({ isPrimary: true })
   public id: number
 

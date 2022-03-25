@@ -3,6 +3,7 @@ import { BaseModel, column, HasOne, hasOne, ManyToMany, manyToMany } from '@ioc:
 import Gimbal from './Gimbal'
 import Charger from './Charger'
 import GimballInstallation from './GimballInstallation'
+import Bateria from './Bateria'
 
 export default class Aircraft extends BaseModel {
   @column({ isPrimary: true })
@@ -18,7 +19,7 @@ export default class Aircraft extends BaseModel {
   public weight: number
 
   @column()
-  public motor_model: string
+  public charger_id: number
 
   @column()
   public ip_rating: string
@@ -37,8 +38,8 @@ export default class Aircraft extends BaseModel {
   public gimbals: ManyToMany<typeof Gimbal>
 
   // Uma aeronave pode ter vários modelos de baterias
-  @manyToMany(()=> Charger)
-  public charges: ManyToMany<typeof Charger>
+  @hasOne(()=> Charger)
+  public bateria: HasOne<typeof Charger>
 
   // Uma aeronave contem um tipo instalação (Poderia ser ENUM talvez)
   @hasOne(()=> GimballInstallation)

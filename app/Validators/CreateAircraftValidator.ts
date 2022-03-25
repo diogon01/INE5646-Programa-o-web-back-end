@@ -28,13 +28,20 @@ export default class CreateAircraftValidator {
       rules.required(),
       rules.unique({ table: 'aircraft', column: 'model' })
     ]),
-    max_payload: schema.number(),
     weight: schema.number(),
-    motor_model: schema.string(),
+    max_payload: schema.number(),
     ip_rating: schema.string(),
     max_flight_time: schema.number(),
-
+    bateria: schema.object().members({
+      id: schema.number(),
+      model: schema.string(),
+      voltage: schema.string(),
+      capacity: schema.number(),
+      energy: schema.number(),
+      weight: schema.number(),
+      max_charging_power: schema.number(),
   })
+})
 
   /**
    * Custom messages for validation failures. You can make use of dot notation `(.)`
@@ -47,7 +54,5 @@ export default class CreateAircraftValidator {
    * }
    *
    */
-  public messages = {
-
-  }
+ 
 }
